@@ -67,7 +67,7 @@ process.title = `[trinkchecker] ${tokens.length} tokens left`;
 
 
 async function check(token){
-    token = token + 1;
+    total = total + 1;
     await sleep(delay);
     const response = await fetch(config.url, { headers: { "authorization": token, 'Content-Type': 'application/json'}})
     if(response.status == 401){
