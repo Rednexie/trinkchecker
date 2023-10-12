@@ -52,7 +52,7 @@ process.title = "[trinkchecker] Readed tokens from: './tokens/tokens.txt'"
 
 const main = async () => {
 
-  for(let i = 0; i <= tokens.length; i++){
+  for(let i = 0; i < tokens.length; i++){
     await sleep(delay);
     check(tokens[i])
     process.title = `[trinkchecker] ${tokens.length - total} tokens left`;
@@ -71,13 +71,13 @@ async function check(token){
     await sleep(delay);
     const response = await fetch(config.url, { headers: { "authorization": token, 'Content-Type': 'application/json'}})
     if(response.status == 401){
-        consoled.bright.red("[trinkchecker] invalid token")
+        consoled.bright.red("[trinkchecker] the token was invalid")
         fs.appendFileSync(path.join("./tokens/invalid.txt"), token + "\n", 'utf8')
         invalid = invalid + 1
         return
     }
     else if(response.status == 403){
-      consoled.bright.yellow("[trinkchecker] locked token")
+      consoled.bright.yellow("[trinkchecker] the token was locked")
         fs.appendFileSync(path.join("./tokens/locked.txt"), token + "\n", 'utf8')
         locked = locked + 1
         return
@@ -92,3 +92,13 @@ async function check(token){
     fs.appendFileSync(path.join("./tokens/valid.txt"), token + "\n", 'utf8')
     consoled.bright.green("[trinkchecker] valid token")
 }
+
+
+
+process.on('exit', () => {
+  consoled.bright.blue("[trinkchecker] Done!")
+  consoled.bright.blue("[trinkchecker] Total Checked Tokens: " + total)
+  consoled.bright.blue("[trinkchecker] Valid Tokens: " + valid);
+  consoled.bright.blue("[trinkchecker] Invalid Tokens: " + invalid);
+  consoled.bright.blue("[trinkchecker] https://github.com/Rednexie/trinkchecker")
+})
