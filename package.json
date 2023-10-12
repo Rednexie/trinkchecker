@@ -1,0 +1,24 @@
+{
+  "name": "trinkchecker",
+  "version": "1.0.0",
+  "description": " Discord Token Checker With Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rednexie/trinkchecker.git"
+  },
+  "author": "Rednexie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rednexie/trinkchecker/issues"
+  },
+  "homepage": "https://github.com/Rednexie/trinkchecker#readme",
+  "dependencies": {
+    "consoled.js": "^1.0.4",
+    "node-fetch": "^3.3.2",
+    "readline-sync": "^1.4.10"
+  }
+}
